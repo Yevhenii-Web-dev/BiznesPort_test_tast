@@ -1,7 +1,37 @@
 @import "_fonts";
 @import "_reset";
 @import "_colors";
-@import "_UI";
+
+.line--a {
+   &::after {
+      position: absolute;
+      content: "";
+      display: block;
+      max-width: 960px;
+      width: 100%;
+      height: 1px;
+      top: 13px;
+      left: 50%;
+      background-color: #2b2b2b;
+      margin: 0px 0px 0px -480px;
+      padding: 0px 15px;
+   }
+}
+.line--b {
+   &::before {
+      position: absolute;
+      content: "";
+      display: block;
+      max-width: 960px;
+      width: 100%;
+      height: 1px;
+      bottom: 13px;
+      left: 50%;
+      background-color: #2b2b2b;
+      margin: 0px 0px 0px -480px;
+      padding: 0px 15px;
+   }
+}
 
 .wrapper {
    min-height: 100%;
@@ -14,7 +44,7 @@
 
 //header ==========================================================================================================================
 .header {
-   position: absolute;
+   position: fixed;
    width: 100%;
    z-index: 50;
    background: $grey-main;
@@ -75,102 +105,188 @@
          color: $activ;
       }
    }
+   @media (max-width: 651px) {
+      &__body {
+         position: fixed;
+         width: 100%;
+         height: 100%;
+         top: 0;
+         left: 0;
+         background-color: #323232;
+         padding: 100px 0px 0px 0px;
+         transform: translate3d(0px, -100%, 0px);
+         transition: all 0.6s ease 0s;
+
+         &.active {
+            transform: translate3d(0px, 0px, 0px);
+         }
+
+         li {
+            font-size: 25px;
+            line-height: 25px;
+            padding: 15px;
+            &:nth-child(2),
+            &:nth-child(3) {
+               padding: 15px;
+            }
+            &:last-child {
+               padding: 0px;
+            }
+         }
+      }
+      &__list {
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+      }
+      &__link,
+      a {
+         color: #fff;
+      }
+   }
 }
 .icon-menu {
+   @media (max-width: 650px) {
+      display: block;
+      position: absolute;
+      top: 18px;
+      right: 10px;
+      width: 30px;
+      height: 18px;
+      cursor: pointer;
+      z-index: 5;
+      span {
+         transition: all 0.3s ease 0s;
+         top: 8px;
+         left: 0;
+         position: absolute;
+         width: 100%;
+         height: 2px;
+         background-color: #fff;
+         &:first-child {
+            top: 0px;
+         }
+         &:last-child {
+            top: auto;
+            bottom: 0px;
+         }
+      }
+      &.active {
+         span {
+            transform: scale(0);
+            &:first-child {
+               transform: rotate(-45deg);
+               top: 8px;
+            }
+            &:last-child {
+               transform: rotate(45deg);
+               bottom: 8px;
+            }
+         }
+      }
+   }
 }
-.conteiner{
+.conteiner {
    padding: 0px 15px;
 }
 //header ==========================================================================================================================
 
-
 //slider ==========================================================================================================================
 
 .slider {
-   padding: 90px 0px;
-   &__body {}
+   position: relative;
+   padding: 130px 0px 10px 0px;
+   @media (max-width: 1001px) {
+      padding: 90px 0px 30px 0px;
+   }
+   //@media (max-width: 450px) {
+   //   padding: 155px 0px 30px 0px;
+   //}
+   &__lineb {
+      &::before {
+         position: absolute;
+         content: "";
+         display: block;
+         max-width: 960px;
+         width: 100%;
+         height: 1px;
+         bottom: 13px;
+         left: 50%;
+         background-color: #e4e9eb;
+         margin: 0px 0px 0px -480px;
+         padding: 0px 15px;
+         @media (max-width: 1001px) {
+            display: none;
+         }
+      }
+   }
+
+   &__body {
+   }
    &__item {
-      padding: 0px 262px;
+      height: 100px;
+      width: 100px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin: 0px 25px;
+      img {
+         height: 100%;
+         display: block;
+         margin: auto;
+      }
    }
 }
-.conteiner{
+.conteiner {
    max-width: 980px;
    margin: 0px auto;
    padding: 0px 15px;
 }
 
-
-/* Слайдер */
-.slick-slider{}
-/* Слайдер запущен */
-.slick-slider.slick-initialized{}
-/* Слайдер с точками */
-.slick-slider.slick-dotted{}
-/* Ограничивающая оболочка */
-.slick-list {
+.slider__body .slick-list {
    overflow: hidden;
+   padding: 0px 25px;
 }
-/* Лента слайдов */
-.slick-track{
+.slick-track {
    display: flex;
    align-items: flex-start;
 }
-/* Слайд */
-.slick-slide{}
-/* Слайд активный (показывается) */
-.slick-slide.slick-active{}
-/* Слайд основной */
-.slick-slide.slick-current{}
-/* Слайд по центру */
-.slick-slide.slick-center{}
-/* Клонированный слайд */
-.slick-slide.slick-cloned{}
-/* Стрелка */
-.slick-arrow{}
-/* Стрелка влево */
-.slick-arrow.slick-prev{}
-/* Стрелка вправо */
-.slick-arrow.slick-next{}
-/* Стрелка не активная */
-.slick-arrow.slick-disabled{}
-
-/* Активная точка */
-.slick-dots li.slick-active{}
-/* Элемент точки */
-
-/* Точки (булиты) */
-.slider__body .slick-dots{
+.slider__body .slick-dots {
    display: flex;
    align-items: center;
    justify-content: left;
    padding: 0px 0px 0px 20px;
 }
-.slider__body .slick-dots li{
+.slider__body .slick-dots li {
    list-style: none;
    margin: 0;
 }
-.slider__body .slick-dots li button{
+.slider__body .slick-dots li button {
    height: 6px;
    width: 6px;
    font-size: 0;
    background-color: #ddd2c5;
 }
-.slider__body .slick-dots li.slick-active button{
+.slider__body .slick-dots li.slick-active button {
    background-color: #8b8784;
 }
-.slider__body .slick-dots li button:before{
+.slider__body .slick-dots li button:before {
    font-size: 0px;
 }
 
 //slider ==========================================================================================================================
-
-
 
 //about ==========================================================================================================================
 
 .about {
    padding: 70px 0px 70px 0px;
    background-color: $activ;
+   @media (max-width: 961px) {
+      padding: 40px 0px 40px 0px;
+   }
    &__body {
       position: relative;
       &::after {
@@ -196,6 +312,9 @@
    }
    &__row {
       display: flex;
+      @media (max-width: 651px) {
+         flex-wrap: wrap;
+      }
    }
 }
 .conteiner {
@@ -208,20 +327,19 @@
 
    &__column {
       &--one {
-         //position: relative;
-         //height: 100%;
          flex: 0 0 26.8%;
+         @media (max-width: 651px) {
+            flex: 1 1 auto;
+            text-align: center;
+            margin-bottom: 25px;
+         }
       }
       &--two {
+         padding: 0px 0px 0px 30px;
          flex: 1 1 auto;
       }
    }
    &__img {
-      //position: absolute;
-      //width: 100%;
-      //height: 100%;
-      //top: 0;
-      //left: 0;
    }
    &__title {
       font-family: "Maven Pro", sans-serif;
@@ -253,16 +371,33 @@
 //contacts ==========================================================================================================================
 
 .contacts {
-   padding: 65px 0px 120px 0px;
+   padding: 65px 0px 65px 0px;
    background-color: $grey-main;
+   @media (max-width: 961px) {
+      padding: 40px 0px 40px 0px;
+   }
+
+   &__line {
+      @media (max-width: 1001px) {
+         display: none;
+      }
+   }
+   position: relative;
    &__header-block {
    }
    &__body {
       display: flex;
+      @media (max-width: 651px) {
+         flex-wrap: wrap;
+      }
    }
    &__column {
       &--one {
          flex: 0 0 72.5%;
+         @media (max-width: 651px) {
+            flex: 1 1 auto;
+            margin-bottom: 25px;
+         }
       }
       &--two {
          flex: 1 1 auto;
@@ -283,6 +418,9 @@
    &__text {
       margin-bottom: 40px;
       line-height: 26px;
+      @media (max-width: 651px) {
+         margin-bottom: 20px;
+      }
       span {
          font-weight: 900;
          color: #e0e0e0;
@@ -290,6 +428,12 @@
    }
    &__list {
       padding: 0px 0px 0px 20px;
+      @media (max-width: 651px) {
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+      }
       li {
          font-weight: bold;
          line-height: 21.6px;
@@ -351,7 +495,6 @@
       line-height: 27.6px;
       color: #e0e0e0;
       margin-bottom: 5px;
-
    }
    &__subtitle {
       font-family: "Maven Pro", sans-serif;
@@ -414,6 +557,7 @@
       }
    }
 }
+
 //contacts ==========================================================================================================================
 
 //footer ==========================================================================================================================
